@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 function WSConnection(props) {
   
@@ -15,7 +15,10 @@ function WSConnection(props) {
       ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
         props.onCurrentCoinDataChanged(data.k);
-
+        localStorage.setItem("WsData", JSON.stringify(data.k))
+        const printWsData = localStorage.getItem("WsData");
+        const JData = JSON.parse(printWsData);
+        console.log(JData);
       };
 
       ws.onclose = () => {

@@ -4,13 +4,16 @@ import ReactApexChart from "react-apexcharts";
 
 const ChartData = ({coinData}) => {
 
-
     const series = [
         {
-            data : coinData.map((data) =>({
-                x : data.t,
-                y : [data.o, data.h, data.l, data.c]
-            })),
+            data : coinData.map((data) => {
+              console.log('start:', new Date(data.t).toLocaleString());
+              console.log('end:', new Date(data.T).toLocaleString());
+              return {
+                x: new Date(data.t),
+                y : [data.o, data.h, data.l, data.c,data.V]
+              }
+            }),
         },
     ];
 
@@ -24,7 +27,7 @@ const ChartData = ({coinData}) => {
           align: 'left'
         },
         xaxis: {
-          type: 'datetime',
+          type: 'datetime',          
         },
         yaxis: {
           tooltip: {
@@ -41,7 +44,6 @@ const ChartData = ({coinData}) => {
         </div>
       );
 };
-
 
 
 export default ChartData;

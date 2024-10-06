@@ -23,7 +23,6 @@ function App() {
 
   const onCurrentCoinDataChanged = function (k) {
     setCoinData((previousData) => {
-      console.log(previousData);
       return [...previousData, k];
     });
   };
